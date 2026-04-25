@@ -2,6 +2,19 @@
 
 > Smart retry for LLM API calls — rate limits, model fallback, token budgets
 
+<p align="center">
+	<img src="media/screenshot.png" width="600">
+</p>
+
+Anthropic and OpenAI SDKs already retry twice on failures. retry-llm is for when that's not enough:
+
+- **Your app uses multiple models for reliability.** Opus is rate limited at 2am? Automatically fall back to Sonnet, then Haiku. No nested try/catches, no state tracking — just a `fallbackModels` array.
+- **You're doing batch processing and need cost control.** Set a token budget so a retry loop doesn't blow your bill overnight. `budget: { maxTokens: 50_000 }` and it stops.
+- **You want instant model switching on rate limits, not waiting.** SDKs wait 30+ seconds on 429. Set `onRateLimit: 'fallback'` to immediately try a cheaper model instead.
+- **You use multiple providers in the same app.** One retry strategy across Anthropic, OpenAI, Google, DeepSeek — instead of each SDK doing its own thing independently.
+
+If you're making simple single-model API calls, the built-in SDK retry is probably fine. You don't need this.
+
 ## Features
 
 - **Rate limit handling** — auto-waits on 429/529 using `retry-after` headers

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a1b26;
+    font-family: "SF Mono", "Menlo", "Monaco", monospace;
+    font-size: 15px;
+    line-height: 1.7;
+    width: 1280px;
+    height: 720px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .window {
+    background: #1a1b26;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 920px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(59,72,116,0.3);
+  }
+  .titlebar {
+    background: #24283b;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    gap: 8px;
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red { background: #f7768e; }
+  .dot-yellow { background: #e0af68; }
+  .dot-green { background: #9ece6a; }
+  .titlebar-text { color: #565f89; font-size: 13px; margin-left: 10px; }
+  .content { padding: 24px 28px 28px; }
+  pre { font-family: inherit; font-size: inherit; line-height: inherit; }
+
+  /* Syntax colors — Tokyo Night */
+  .kw { color: #bb9af7; }       /* keywords: import, from, const, await */
+  .fn { color: #7aa2f7; }       /* function names */
+  .str { color: #9ece6a; }      /* strings */
+  .num { color: #ff9e64; }      /* numbers */
+  .prop { color: #7dcfff; }     /* property names */
+  .punc { color: #a9b1d6; }     /* punctuation, brackets */
+  .par { color: #c0caf5; }      /* parameters */
+  .op { color: #89ddff; }       /* operators: =>, ??, = */
+  .com { color: #565f89; }      /* comments */
+  .type { color: #2ac3de; }     /* types */
+</style>
+</head>
+<body>
+<div class="window">
+  <div class="titlebar">
+    <div class="dot dot-red"></div>
+    <div class="dot dot-yellow"></div>
+    <div class="dot dot-green"></div>
+    <span class="titlebar-text">app.ts</span>
+  </div>
+  <div class="content">
+    <pre><span class="kw">import</span> <span class="punc">{</span> <span class="fn">retryLlm</span> <span class="punc">}</span> <span class="kw">from</span> <span class="str">'retry-llm'</span><span class="punc">;</span>
+
+<span class="kw">const</span> <span class="par">result</span> <span class="op">=</span> <span class="kw">await</span> <span class="fn">retryLlm</span><span class="punc">(</span>
+  <span class="punc">(</span><span class="par">ctx</span><span class="punc">)</span> <span class="op">=></span> <span class="par">anthropic</span><span class="punc">.</span><span class="fn">messages</span><span class="punc">.</span><span class="fn">create</span><span class="punc">({</span>
+    <span class="prop">model</span><span class="punc">:</span> <span class="par">ctx</span><span class="punc">.</span><span class="prop">model</span> <span class="op">??</span> <span class="str">'claude-sonnet-4-20250514'</span><span class="punc">,</span>
+    <span class="prop">messages</span><span class="punc">:</span> <span class="punc">[{</span> <span class="prop">role</span><span class="punc">:</span> <span class="str">'user'</span><span class="punc">,</span> <span class="prop">content</span><span class="punc">:</span> <span class="str">'Hello'</span> <span class="punc">}],</span>
+  <span class="punc">}),</span>
+  <span class="punc">{</span>
+    <span class="prop">maxRetries</span><span class="punc">:</span> <span class="num">5</span><span class="punc">,</span>
+    <span class="prop">fallbackModels</span><span class="punc">:</span> <span class="punc">[</span><span class="str">'claude-haiku-4-5-20251001'</span><span class="punc">],</span>
+    <span class="prop">onRateLimit</span><span class="punc">:</span> <span class="str">'wait'</span><span class="punc">,</span>              <span class="com">// auto-wait on 429</span>
+    <span class="prop">budget</span><span class="punc">:</span> <span class="punc">{</span> <span class="prop">maxTokens</span><span class="punc">:</span> <span class="num">50_000</span> <span class="punc">},</span>   <span class="com">// stop if tokens exceed</span>
+  <span class="punc">},</span>
+<span class="punc">);</span></pre>
+  </div>
+</div>
+</body>
+</html>
