@@ -202,6 +202,11 @@ Yes — Anthropic and OpenAI SDKs retry 2x by default. retry-llm is for when you
 
 Approximate. It tracks tokens from successful responses only (failed calls don't return usage data). It's a safety net, not an accounting system.
 
+## Related
+
+- [AgentOS](https://github.com/saadnvd1/agentos) - Mobile-first web interface for managing AI coding sessions
+- [aTerm](https://github.com/saadnvd1/aterm) - Terminal workspace for agentic coding workflows
+
 ## License
 
 MIT
