@@ -202,10 +202,6 @@ Yes — Anthropic and OpenAI SDKs retry 2x by default. retry-llm is for when you
 
 Approximate. It tracks tokens from successful responses only (failed calls don't return usage data). It's a safety net, not an accounting system.
 
-## Related
-
-- [p-retry](https://github.com/sindresorhus/p-retry) - Generic retry for promises
-
 ## License
 
 MIT
