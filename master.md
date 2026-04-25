@@ -344,11 +344,13 @@ Test cases:
 
 ## Status
 
-- [ ] Project setup
-- [ ] Core implementation
-- [ ] Tests
-- [ ] README
-- [ ] npm publish
-- [ ] GitHub public
-- [ ] Product page
+- [x] Project setup
+- [x] Core implementation
+- [x] Tests (45 unit + 6 e2e against DeepSeek)
+- [x] README (Variant A template + screenshot + use cases)
+- [x] npm publish (retry-llm@1.0.0)
+- [x] GitHub public
+- [x] Product page (saadnaveed.com projects + shipped)
 - [ ] Show HN
+- [ ] Reddit posts
+- [ ] Blog post
